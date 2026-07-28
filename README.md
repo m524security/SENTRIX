@@ -21,7 +21,7 @@
 [![Runs Offline](https://img.shields.io/badge/runs-offline-success)](#-provider-agnostic-reasoning)
 [![Cost](https://img.shields.io/badge/cloud_cost-%240-brightgreen)](#)
 
-<<<<<<< HEAD
+
 **Every backup dashboard tells you your backups *succeeded*. None of them can tell you whether you can actually *recover*.**
 
 SENTRIX scores **provable recoverability** — and when it doesn't know, it schedules the restore test that finds out.
