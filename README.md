@@ -9,13 +9,12 @@
 *"Sees the break before it happens. Reasons in real time. Never goes dark."*
 
 [![Version](https://img.shields.io/badge/version-4.1.0-3b82f6)](#-changelog)
-<<<<<<< HEAD
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-80%20passing-brightgreen)](#)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 =======
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
->>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+
 [![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Real-time](https://img.shields.io/badge/ingestion-real--time-22d3ee)](#-real-time-mode-not-a-simulation)
