@@ -9,9 +9,9 @@
 
 # ---- builder ----------------------------------------------------------------
 <<<<<<< HEAD
-FROM python:3.12-slim AS builder
+FROM python:3.14-slim AS builder
 =======
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 >>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
 WORKDIR /app
 COPY requirements.txt .
@@ -26,9 +26,9 @@ RUN python scripts/fetch_loghub.py || true; mkdir -p /app/loghub
 
 # ---- runtime ----------------------------------------------------------------
 <<<<<<< HEAD
-FROM python:3.12-slim
+FROM python:3.14-slim
 =======
-FROM python:3.11-slim
+FROM python:3.14-slim
 >>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
 WORKDIR /app
 ENV PYTHONUNBUFFERED=1 \
