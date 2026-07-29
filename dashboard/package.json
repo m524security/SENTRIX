@@ -3,7 +3,7 @@
   "version": "4.1.0",
   "private": true,
   "dependencies": {
-    "@tsparticles/engine": "^4.2.0",
+    "@tsparticles/engine": "^4.3.2",
     "@tsparticles/react": "^4.2.0",
     "@tsparticles/slim": "^4.2.0",
     "framer-motion": "^12.40.0",
