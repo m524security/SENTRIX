@@ -8,7 +8,7 @@
     "@tsparticles/slim": "^4.2.0",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.21.0",
-    "react": "^18.2.0",
+    "react": "^19.2.8",
     "react-dom": "^18.2.0"
   },
   "scripts": {
