@@ -1,0 +1,83 @@
+[
+  {
+    "id": "WIN-001",
+    "name": "Domain Controller backup failure",
+    "category": "windows_server",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "DC-01": {"hours_since_last_backup": 18, "consecutive_failures": 4, "last_backup_status": "failed", "event_id": 1007, "event_message": "Active Directory backup failed — NTDS database inconsistent"}
+    }
+  },
+  {
+    "id": "WIN-002",
+    "name": "SQL Server log chain broken",
+    "category": "windows_server",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "SQL-PROD-01": {"hours_since_last_backup": 14, "consecutive_failures": 3, "last_backup_status": "failed", "event_id": 1008, "event_message": "SQL Server log backup chain broken — manual intervention needed"}
+    }
+  },
+  {
+    "id": "WIN-003",
+    "name": "Volume Shadow Copy timeouts",
+    "category": "windows_server",
+    "severity": "high",
+    "duration_hours": 6,
+    "assets": {
+      "EXCH-02": {"hours_since_last_backup": 22, "consecutive_failures": 2, "last_backup_status": "failed", "event_id": 1002, "event_message": "Volume Shadow Copy failure — VSS writer timeout"},
+      "FS-01": {"hours_since_last_backup": 14, "consecutive_failures": 1, "last_backup_status": "failed", "event_id": 1004, "event_message": "NTFS file system corruption detected on backup volume"}
+    }
+  },
+  {
+    "id": "WIN-004",
+    "name": "Tape drive failure chain",
+    "category": "windows_server",
+    "severity": "high",
+    "duration_hours": 8,
+    "assets": {
+      "DC-01": {"hours_since_last_backup": 6, "consecutive_failures": 1, "last_backup_status": "success", "event_id": 1009, "event_message": "Backup to tape drive failed — device not ready"}
+    }
+  },
+  {
+    "id": "WIN-005",
+    "name": "Backup agent crash loop",
+    "category": "windows_server",
+    "severity": "medium",
+    "duration_hours": 4,
+    "assets": {
+      "WEB-IIS-01": {"hours_since_last_backup": 48, "consecutive_failures": 3, "last_backup_status": "failed", "event_id": 1001, "event_message": "Backup agent service crashed unexpectedly"}
+    }
+  },
+  {
+    "id": "WIN-006",
+    "name": "Hyper-V checkpoint delay",
+    "category": "windows_server",
+    "severity": "low",
+    "duration_hours": 2,
+    "assets": {
+      "DEV-WIN-01": {"hours_since_last_backup": 36, "consecutive_failures": 0, "last_backup_status": "success", "event_id": 1005, "event_message": "Hyper-V backup checkpoint merge delayed"}
+    }
+  },
+  {
+    "id": "WIN-007",
+    "name": "Backup disk space critical",
+    "category": "windows_server",
+    "severity": "high",
+    "duration_hours": 2,
+    "assets": {
+      "FS-01": {"hours_since_last_backup": 20, "consecutive_failures": 2, "last_backup_status": "failed", "event_id": 1003, "event_message": "Backup target disk space below 10%"}
+    }
+  },
+  {
+    "id": "WIN-008",
+    "name": "Healthy DC backup cycle",
+    "category": "windows_server",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "DC-01": {"hours_since_last_backup": 1.5, "consecutive_failures": 0, "last_backup_status": "success", "event_id": 1006, "event_message": "Scheduled backup completed successfully"}
+    }
+  }
+]

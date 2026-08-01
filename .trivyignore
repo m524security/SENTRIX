@@ -1,0 +1,23 @@
+# Trivy suppressions — documented, justified, and expiring.
+#
+# The image scan fails the build on CRITICAL/HIGH with `ignore-unfixed: true`,
+# so only vulnerabilities that HAVE a fix available can break CI. That is the
+# right default: if upstream shipped a patch, we should take it.
+#
+# Reality check: base-image CVEs are a treadmill. Debian publishes new advisories
+# constantly, and the weekly scheduled scan can go red without a single line of
+# SENTRIX changing. When that happens, the correct order of preference is:
+#
+#   1. Rebuild — `apt-get upgrade` in the runtime stage often already fixes it.
+#   2. Bump the base image tag.
+#   3. Only then, suppress HERE — with a CVE id, a reason, and an expiry date.
+#
+# Never suppress something reachable from application code. These are for
+# base-image noise that we cannot patch and that our attack surface doesn't
+# touch (e.g. a CVE in a Debian utility the container never executes).
+#
+# Format:  CVE-YYYY-NNNNN   # reason — reviewed YYYY-MM-DD, expires YYYY-MM-DD
+#
+# (empty — the runtime stage patches the OS and upgrades pip/setuptools/wheel,
+#  which removed the setuptools CVE-2024-6345 / CVE-2025-47273 findings that
+#  originally failed this gate. Add entries only with justification.)

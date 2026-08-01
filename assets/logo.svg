@@ -1,0 +1,44 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SENTRIX logo">
+  <defs>
+    <linearGradient id="sx-g" x1="50" y1="40" x2="200" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#4f7cff"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="sx-edge" x1="30" y1="30" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="sx-halo" cx="0.5" cy="0.45" r="0.62">
+      <stop stop-color="#3b82f6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sx-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <!-- soft ambient halo -->
+  <circle cx="120" cy="120" r="112" fill="url(#sx-halo)"/>
+
+  <!-- app badge -->
+  <rect x="30" y="30" width="180" height="180" rx="44" fill="#0a0f1e"/>
+  <rect x="31.5" y="31.5" width="177" height="177" rx="42.5" fill="none" stroke="url(#sx-edge)" stroke-width="3"/>
+
+  <!-- orbital scan ring (segmented) -->
+  <g opacity="0.55">
+    <circle cx="120" cy="120" r="64" fill="none" stroke="#334155" stroke-width="2"/>
+    <circle cx="120" cy="120" r="64" fill="none" stroke="url(#sx-g)" stroke-width="3"
+            stroke-linecap="round" stroke-dasharray="70 332" transform="rotate(-58 120 120)"/>
+  </g>
+  <!-- sentinel node on the ring -->
+  <circle cx="167" cy="76" r="6" fill="#67e8f9"/>
+  <circle cx="167" cy="76" r="11" fill="none" stroke="#67e8f9" stroke-width="1.6" opacity="0.45"/>
+
+  <!-- S core: glow pass + crisp pass -->
+  <path d="M148 88 C148 71 92 71 92 94 C92 117 148 113 148 140 C148 163 92 163 92 146"
+        filter="url(#sx-glow)" fill="none" stroke="url(#sx-g)" stroke-width="20"
+        stroke-linecap="round" opacity="0.45"/>
+  <path d="M148 88 C148 71 92 71 92 94 C92 117 148 113 148 140 C148 163 92 163 92 146"
+        fill="none" stroke="url(#sx-g)" stroke-width="15" stroke-linecap="round"/>
+</svg>

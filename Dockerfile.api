@@ -1,0 +1,76 @@
+# =============================================================================
+# SENTRIX API — multi-stage, non-root, builds on a fresh clone
+# =============================================================================
+# Audit fixes:
+#   • loghub/ is gitignored, so `COPY loghub/` broke every fresh-clone build.
+#     It is now fetched at build time (idempotent, degrades gracefully offline).
+#   • tests/ no longer ships in the production image (attack surface + bloat).
+#   • Runs as a non-root user — if the container is ever popped (e.g. via an
+#     image-parsing bug), the attacker doesn't land in a root shell.
+#   • HEALTHCHECK added so `restart: unless-stopped` can actually detect a hang.
+#   • Multi-stage: build tools never reach the runtime image.
+# =============================================================================
+
+# ---- builder ----------------------------------------------------------------
+<<<<<<< HEAD
+FROM python:3.12-slim AS builder
+=======
+FROM python:3.11-slim AS builder
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+# Fetch the small LogHub sample CSVs into the build context (a few MB).
+COPY scripts/fetch_loghub.py ./scripts/fetch_loghub.py
+# `|| true`: SENTRIX degrades gracefully to synthetic calibration without the
+# samples, so an offline build must not fail. `mkdir -p` guarantees the dir
+# exists either way — otherwise the COPY below hard-fails on an offline build,
+# which is exactly the failure mode this stage exists to avoid.
+RUN python scripts/fetch_loghub.py || true; mkdir -p /app/loghub
+
+# ---- runtime ----------------------------------------------------------------
+<<<<<<< HEAD
+FROM python:3.12-slim
+=======
+FROM python:3.11-slim
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+<<<<<<< HEAD
+# Pull Debian security updates the published base tag hasn't picked up yet.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --create-home --uid 10001 sentrix
+
+COPY --from=builder /install /usr/local
+
+# The slim base ships setuptools 65.x — CVE-2024-6345 + CVE-2025-47273, both
+# HIGH and both FIXED upstream, so `ignore-unfixed: true` does not filter them.
+# This is what turned the image scan red. Run AFTER the COPY above so nothing
+# overwrites the upgraded versions.
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+=======
+RUN useradd --create-home --uid 10001 sentrix
+
+COPY --from=builder /install /usr/local
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+COPY --from=builder /app/loghub/ ./loghub/
+COPY agent/ ./agent/
+COPY api/ ./api/
+
+# Writable runtime dirs (audit log JSONL, SQLite persistence, uploads)
+RUN mkdir -p /app/data/sample && chown -R sentrix:sentrix /app
+
+USER sentrix
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=4).status==200 else 1)"
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

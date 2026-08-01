@@ -1,0 +1,20 @@
+name: SENTRIX CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # Light profile: the API/agent import path only. pytest-asyncio is
+      # required — tests/test_security.py has async tests and pytest.ini sets
+      # asyncio_mode=auto, so without it collection errors out.
+      - name: Install runtime deps (light profile)
+        run: pip install fastapi "uvicorn[standard]" httpx python-dotenv pydantic pytest pytest-asyncio
+      - name: Compile all modules
+        run: python -m py_compile $(find agent api scripts -name "*.py")
+      - name: Run test suite
+        env:
+          SENTRIX_ENV: development
+        run: pytest tests/ -q

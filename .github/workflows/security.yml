@@ -1,0 +1,169 @@
+# =============================================================================
+# SENTRIX — Security CI Pipeline
+# =============================================================================
+# Runs on every push/PR and weekly:
+#   • tests           — full pytest suite incl. security regression tests
+#   • codeql          — GitHub SAST for Python + JavaScript (dashboard)
+#   • dependency-audit— pip-audit against the pinned lock file (known CVEs)
+#   • secret-scan     — gitleaks over the full git history
+#   • image-scan      — Trivy scan of both Docker images (OS + Python CVEs)
+# =============================================================================
+name: security
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"   # weekly Monday scan — catches newly published CVEs
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.lock
+      - name: Run test suite (incl. security regression tests)
+        env:
+          SENTRIX_ENV: development
+        run: pytest tests/ -q
+
+  codeql:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [python, javascript]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+      - uses: github/codeql-action/analyze@v3
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pip-audit
+      - name: Audit pinned dependencies for known CVEs
+        run: pip-audit -r requirements.lock --strict
+
+  npm-audit:
+    # JS deps get the same CVE gate as Python (pip-audit) and images (Trivy).
+    # --omit=dev because the CRA/webpack/jest toolchain never reaches the
+    # runtime image (multi-stage build) — production deps must stay clean.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+      - name: Audit dev toolchain (advisory — never ships to runtime)
+        run: npm audit --audit-level=critical || true
+
+  sbom:
+    # Software Bill of Materials for both ecosystems — the natural next step
+    # given we already run CVE, secret and image scanning.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          artifact-name: sentrix-sbom.cdx.json
+      - name: Scan SBOM for vulnerabilities
+        uses: anchore/scan-action@v3
+        with:
+          sbom: sentrix-sbom.cdx.json
+          severity-cutoff: high
+          fail-build: false
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history — secrets hide in old commits
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  image-scan:
+    runs-on: ubuntu-latest
+    # fail-fast off: one broken image shouldn't cancel the others' results.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: api
+            dockerfile: Dockerfile.api
+            context: .
+          - name: agent
+            dockerfile: Dockerfile.agent
+            context: .
+          - name: dashboard
+            dockerfile: dashboard/Dockerfile
+            context: ./dashboard
+    steps:
+      - uses: actions/checkout@v4
+      # NOTE: the tag is a literal matrix value, not `$(basename ...)`.
+      # `with:` blocks are not a shell — command substitution there is passed
+      # through as literal text, so Trivy would look for an image named
+      # `sentrix-scan:$(basename Dockerfile.api)` and fail.
+      - name: Build image
+        run: docker build -f ${{ matrix.dockerfile }} -t sentrix-scan:${{ matrix.name }} ${{ matrix.context }}
+<<<<<<< HEAD
+
+      # Report first, gate second. This step never fails, so the findings are
+      # always readable in the log — otherwise a red gate tells you it failed
+      # but not what it found, which makes the scan hard to act on.
+      - name: Trivy report (informational)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: sentrix-scan:${{ matrix.name }}
+          severity: CRITICAL,HIGH,MEDIUM
+          exit-code: "0"
+          ignore-unfixed: true
+          format: table
+
+      # The actual gate: fail only on CRITICAL/HIGH that have a fix available.
+      # Suppressions (if ever needed) live in .trivyignore with justification.
+      - name: Trivy gate (fails the build)
+=======
+      - name: Trivy vulnerability scan
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: sentrix-scan:${{ matrix.name }}
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          ignore-unfixed: true
+<<<<<<< HEAD
+          trivyignores: .trivyignore
+=======
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32

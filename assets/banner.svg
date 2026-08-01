@@ -1,0 +1,76 @@
+<svg width="1280" height="360" viewBox="0 0 1280 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SENTRIX banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#05070f"/>
+      <stop offset="1" stop-color="#0a1024"/>
+    </linearGradient>
+    <linearGradient id="word" x1="270" y1="130" x2="900" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dd3fc"/>
+      <stop offset="0.55" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="mk" x1="90" y1="100" x2="230" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#4f7cff"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.16" cy="0.5" r="0.42">
+      <stop stop-color="#2563eb" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#1e293b"/>
+    </pattern>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <rect width="1280" height="360" fill="url(#dots)" opacity="0.5"/>
+  <rect width="1280" height="360" fill="url(#halo)"/>
+
+  <!-- right-side orbital scanner motif (kept away from the text) -->
+  <g transform="translate(1120,180)" opacity="0.5">
+    <circle r="150" fill="none" stroke="#1e3a5f" stroke-width="1.5"/>
+    <circle r="112" fill="none" stroke="#24406b" stroke-width="1.5"/>
+    <circle r="74" fill="none" stroke="#2a4a7a" stroke-width="1.5"/>
+    <circle r="150" fill="none" stroke="url(#mk)" stroke-width="3" stroke-linecap="round"
+            stroke-dasharray="120 823" transform="rotate(-40)"/>
+    <circle r="112" fill="none" stroke="url(#mk)" stroke-width="2.5" stroke-linecap="round"
+            stroke-dasharray="70 634" transform="rotate(140)"/>
+    <circle cx="0" cy="-74" r="5" fill="#67e8f9"/>
+    <circle cx="0" cy="0" r="7" fill="#0a0f1e" stroke="#67e8f9" stroke-width="2"/>
+  </g>
+
+  <!-- badge mark -->
+  <g transform="translate(88,104)">
+    <rect x="0" y="0" width="152" height="152" rx="37" fill="#0a0f1e"/>
+    <rect x="1.5" y="1.5" width="149" height="149" rx="35.5" fill="none" stroke="url(#mk)" stroke-width="2.6"/>
+    <g opacity="0.55">
+      <circle cx="76" cy="76" r="54" fill="none" stroke="#334155" stroke-width="1.8"/>
+      <circle cx="76" cy="76" r="54" fill="none" stroke="url(#mk)" stroke-width="2.6"
+              stroke-linecap="round" stroke-dasharray="58 282" transform="rotate(-58 76 76)"/>
+    </g>
+    <circle cx="115" cy="39" r="5" fill="#67e8f9"/>
+    <path d="M99 50 C99 36 53 36 53 55 C53 74 99 71 99 93 C99 112 53 112 53 98"
+          filter="url(#soft)" fill="none" stroke="url(#mk)" stroke-width="16" stroke-linecap="round" opacity="0.4"/>
+    <path d="M99 50 C99 36 53 36 53 55 C53 74 99 71 99 93 C99 112 53 112 53 98"
+          fill="none" stroke="url(#mk)" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- lockup -->
+  <text x="272" y="196" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="92" font-weight="800" letter-spacing="7" fill="url(#word)">SENTRIX</text>
+  <text x="276" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="21"
+        font-weight="600" letter-spacing="5.5" fill="#8fa8cc">AUTONOMOUS RECOVERY &#38; RESILIENCE INTELLIGENCE</text>
+  <text x="276" y="274" font-family="'Segoe UI', Arial, sans-serif" font-size="17"
+        font-weight="400" letter-spacing="1" fill="#5b6b85">Sees the break before it happens &#183; reasons in real time &#183; never goes dark</text>
+
+  <!-- version chip -->
+  <g transform="translate(1128,40)">
+    <rect width="112" height="32" rx="16" fill="#0b1220" stroke="#2b3a55"/>
+    <circle cx="20" cy="16" r="4.5" fill="#34d399"/>
+    <text x="34" y="21.5" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="600" fill="#cbd5e1">v4.1.0</text>
+  </g>
+</svg>
