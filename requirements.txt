@@ -24,5 +24,5 @@ google-genai>=1.0.0
 supabase>=2.6.0
 
 # --- Dev / tests ---
-pytest>=8.0.0
+pytest>=9.1.1
 pytest-asyncio>=0.24.0   # tests/test_security.py uses async tests (pytest.ini: asyncio_mode=auto)
