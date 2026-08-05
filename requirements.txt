@@ -18,7 +18,7 @@ pydantic>=2.9.0
 
 # --- LLM providers ---
 openai>=1.50.0
-google-genai>=1.0.0
+google-genai>=2.16.0
 
 # --- Persistence (optional cloud mirror; SQLite is built-in) ---
 supabase>=2.6.0
