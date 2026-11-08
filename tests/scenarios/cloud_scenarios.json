@@ -1,0 +1,82 @@
+[
+  {
+    "id": "CLD-001",
+    "name": "AWS EC2 AMI backup failure",
+    "category": "cloud_service",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "AWS-EC2-PROD-01": {"hours_since_last_backup": 12, "consecutive_failures": 4, "last_backup_status": "failed", "event_message": "AWS EC2 AMI creation failed — EBS snapshot limit exceeded"}
+    }
+  },
+  {
+    "id": "CLD-002",
+    "name": "RDS automated backup broken",
+    "category": "cloud_service",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "AWS-RDS-01": {"hours_since_last_backup": 18, "consecutive_failures": 3, "last_backup_status": "failed", "event_message": "RDS automated backup failed — storage autoscaling throttled"}
+    }
+  },
+  {
+    "id": "CLD-003",
+    "name": "Azure VM recovery vault locked",
+    "category": "cloud_service",
+    "severity": "high",
+    "duration_hours": 4,
+    "assets": {
+      "AZURE-VM-01": {"hours_since_last_backup": 14, "consecutive_failures": 2, "last_backup_status": "failed", "event_message": "Azure Recovery Vault backup policy locked — retention lock enabled"}
+    }
+  },
+  {
+    "id": "CLD-004",
+    "name": "GCP Cloud SQL export stalled",
+    "category": "cloud_service",
+    "severity": "high",
+    "duration_hours": 5,
+    "assets": {
+      "GCP-SQL-01": {"hours_since_last_backup": 10, "consecutive_failures": 2, "last_backup_status": "failed", "event_message": "GCP Cloud SQL export to GCS stalled — concurrent export limit reached"}
+    }
+  },
+  {
+    "id": "CLD-005",
+    "name": "S3 data lake replication paused",
+    "category": "cloud_service",
+    "severity": "medium",
+    "duration_hours": 6,
+    "assets": {
+      "AWS-S3-DATA-01": {"hours_since_last_backup": 24, "consecutive_failures": 1, "last_backup_status": "failed", "event_message": "S3 cross-region replication paused — source bucket versioning disabled"}
+    }
+  },
+  {
+    "id": "CLD-006",
+    "name": "Azure Blob tiering error",
+    "category": "cloud_service",
+    "severity": "medium",
+    "duration_hours": 4,
+    "assets": {
+      "AZURE-BLOB-01": {"hours_since_last_backup": 20, "consecutive_failures": 1, "last_backup_status": "failed", "event_message": "Azure Blob lifecycle tiering failed — cold storage write limit"}
+    }
+  },
+  {
+    "id": "CLD-007",
+    "name": "GKE cluster backup timeout",
+    "category": "cloud_service",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "GCP-GKE-01": {"hours_since_last_backup": 8, "consecutive_failures": 3, "last_backup_status": "failed", "event_message": "GKE backup via Backup for GKE timed out — etcd snapshot size exceeded"}
+    }
+  },
+  {
+    "id": "CLD-008",
+    "name": "Healthy AWS backup cycle",
+    "category": "cloud_service",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "AWS-EC2-PROD-01": {"hours_since_last_backup": 0.5, "consecutive_failures": 0, "last_backup_status": "success", "event_message": "Daily AWS backup completed — all snapshots verified"}
+    }
+  }
+]

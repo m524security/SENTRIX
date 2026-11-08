@@ -1,0 +1,17 @@
+"""
+SENTRIX — legacy hdfs_log_source shim.
+Backed by the LogHub-grounded engine (dataset "hdfs").
+Kept so existing imports in api/main.py resolve unchanged.
+"""
+
+from agent.ingestion import loghub_engine
+
+DATASET_ID = "hdfs"
+
+def _assets():
+    return loghub_engine.get_assets_for_dataset(DATASET_ID)
+
+# Static asset list (current world-tick snapshot at import time is fine;
+# consumers that need live state call the engine directly).
+SAMPLE_ASSETS = _assets()
+HDFS_ASSETS = _assets()

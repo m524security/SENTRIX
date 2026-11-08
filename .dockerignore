@@ -1,0 +1,12 @@
+.env
+**/.env
+node_modules
+dashboard/node_modules
+dashboard/build
+__pycache__
+**/__pycache__
+*.pyc
+.git
+data/audit_log.jsonl
+venv
+.venv

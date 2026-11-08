@@ -1,0 +1,82 @@
+[
+  {
+    "id": "SQL-001",
+    "name": "Production SQL cluster log chain broken",
+    "category": "sql_database",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "SQL-PROD-01": {"hours_since_last_backup": 16, "consecutive_failures": 4, "last_backup_status": "failed", "checksum_status": "mismatch", "event_message": "SQL transaction log chain broken — VLF log sequence gap detected"}
+    }
+  },
+  {
+    "id": "SQL-002",
+    "name": "Data warehouse restore point failure",
+    "category": "sql_database",
+    "severity": "critical",
+    "duration_hours": 4,
+    "assets": {
+      "SQL-DW-01": {"hours_since_last_backup": 20, "consecutive_failures": 3, "last_backup_status": "failed", "checksum_status": "mismatch", "event_message": "Data warehouse restore point expired — differential backup unavailable"}
+    }
+  },
+  {
+    "id": "SQL-003",
+    "name": "PostgreSQL WAL archiver stalled",
+    "category": "sql_database",
+    "severity": "high",
+    "duration_hours": 6,
+    "assets": {
+      "PG-GEO-01": {"hours_since_last_backup": 14, "consecutive_failures": 2, "last_backup_status": "failed", "checksum_status": "verified", "event_message": "PostgreSQL WAL archiver failed to ship — replication lag at 45 minutes"}
+    }
+  },
+  {
+    "id": "SQL-004",
+    "name": "MySQL replication slave behind",
+    "category": "sql_database",
+    "severity": "high",
+    "duration_hours": 3,
+    "assets": {
+      "MYSQL-WEB-01": {"hours_since_last_backup": 10, "consecutive_failures": 1, "last_backup_status": "failed", "checksum_status": "verified", "event_message": "MySQL replication slave lag exceeds 30 minutes — binlog position behind"}
+    }
+  },
+  {
+    "id": "SQL-005",
+    "name": "Reporting server backup corruption",
+    "category": "sql_database",
+    "severity": "medium",
+    "duration_hours": 5,
+    "assets": {
+      "SQL-REPORT-01": {"hours_since_last_backup": 28, "consecutive_failures": 2, "last_backup_status": "failed", "checksum_status": "mismatch", "event_message": "Reporting DB backup file checksum mismatch — possible corruption"}
+    }
+  },
+  {
+    "id": "SQL-006",
+    "name": "CockroachDB geo-replication failure",
+    "category": "sql_database",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "COCKROACH-01": {"hours_since_last_backup": 8, "consecutive_failures": 3, "last_backup_status": "failed", "checksum_status": "verified", "event_message": "CockroachDB range replication quorum lost — cluster degraded"}
+    }
+  },
+  {
+    "id": "SQL-007",
+    "name": "MariaDB analytics export failure",
+    "category": "sql_database",
+    "severity": "medium",
+    "duration_hours": 4,
+    "assets": {
+      "MARIADB-01": {"hours_since_last_backup": 36, "consecutive_failures": 1, "last_backup_status": "failed", "checksum_status": "verified", "event_message": "MariaDB analytics export timed out — temp tablespace full"}
+    }
+  },
+  {
+    "id": "SQL-008",
+    "name": "Healthy SQL backup cycle",
+    "category": "sql_database",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "SQL-PROD-01": {"hours_since_last_backup": 1.0, "consecutive_failures": 0, "last_backup_status": "success", "checksum_status": "verified", "event_message": "SQL nightly backup completed — all checksums verified"}
+    }
+  }
+]

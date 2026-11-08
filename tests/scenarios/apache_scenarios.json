@@ -1,0 +1,83 @@
+[
+  {
+    "id": "APACHE-001",
+    "name": "PHP-FPM pool exhaustion",
+    "category": "web_server",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "WEB-PROD-01": {"hours_since_last_backup": 16, "consecutive_failures": 4, "last_backup_status": "failed", "http_status": 500, "requests_per_5min": 4800}
+    }
+  },
+  {
+    "id": "APACHE-002",
+    "name": "Upstream backend timeout",
+    "category": "web_server",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "API-GW-01": {"hours_since_last_backup": 12, "consecutive_failures": 3, "last_backup_status": "failed", "http_status": 502, "requests_per_5min": 3500}
+    }
+  },
+  {
+    "id": "APACHE-003",
+    "name": "Worker connections exhausted",
+    "category": "web_server",
+    "severity": "high",
+    "duration_hours": 4,
+    "assets": {
+      "WEB-PROD-01": {"hours_since_last_backup": 8, "consecutive_failures": 2, "last_backup_status": "failed", "http_status": 503, "requests_per_5min": 4200},
+      "STATUS-01": {"hours_since_last_backup": 10, "consecutive_failures": 1, "last_backup_status": "failed", "http_status": 502, "requests_per_5min": 1800}
+    }
+  },
+  {
+    "id": "APACHE-004",
+    "name": "Admin panel rate limited",
+    "category": "web_server",
+    "severity": "medium",
+    "duration_hours": 1,
+    "assets": {
+      "ADMIN-PANEL-01": {"hours_since_last_backup": 24, "consecutive_failures": 1, "last_backup_status": "failed", "http_status": 429, "requests_per_5min": 2800}
+    }
+  },
+  {
+    "id": "APACHE-005",
+    "name": "CDN origin slow recovery",
+    "category": "web_server",
+    "severity": "medium",
+    "duration_hours": 6,
+    "assets": {
+      "CDN-ORIGIN-01": {"hours_since_last_backup": 28, "consecutive_failures": 1, "last_backup_status": "failed", "http_status": 504, "requests_per_5min": 1200}
+    }
+  },
+  {
+    "id": "APACHE-006",
+    "name": "Blog server healthy",
+    "category": "web_server",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "BLOG-01": {"hours_since_last_backup": 4, "consecutive_failures": 0, "last_backup_status": "success", "http_status": 200, "requests_per_5min": 450}
+    }
+  },
+  {
+    "id": "APACHE-007",
+    "name": "Static assets 404 spike",
+    "category": "web_server",
+    "severity": "low",
+    "duration_hours": 2,
+    "assets": {
+      "STATIC-01": {"hours_since_last_backup": 12, "consecutive_failures": 0, "last_backup_status": "success", "http_status": 404, "requests_per_5min": 3200}
+    }
+  },
+  {
+    "id": "APACHE-008",
+    "name": "Staging server misconfigured",
+    "category": "web_server",
+    "severity": "low",
+    "duration_hours": 1,
+    "assets": {
+      "STAGING-01": {"hours_since_last_backup": 36, "consecutive_failures": 0, "last_backup_status": "success", "http_status": 403, "requests_per_5min": 25}
+    }
+  }
+]

@@ -1,0 +1,35 @@
+# Secrets — widened from bare `.env` so dashboard/.env.local et al. can't slip in
+.env*
+!.env.example
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+*.egg-info/
+dist/
+build/
+loghub/
+*.log
+tests/evaluation_results.json
+
+# Python virtual environment (1.8GB — never commit)
+venv/
+.venv/
+
+# SLM training intermediates (the final adapter IS committed, checkpoints are not)
+models/**/_checkpoints/
+_checkpoints/
+
+# Local audit mirror
+data/audit_log.jsonl
+
+# Removed from repo (kept locally): legacy build guide + scratch/generated artifacts
+NEXORA.md
+_apilog.txt
+data/sample/*.png
+
+# editor / tooling
+.claude/
+.vscode/
+.idea/
+*.code-workspace

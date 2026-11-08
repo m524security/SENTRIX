@@ -1,0 +1,28 @@
+# ============================================================
+# SENTRIX — Python Requirements (Python 3.11+ / 3.12 recommended)
+#   Light profile (agent + API + real-time + tests):
+#     pip install -r requirements.txt
+#   Full ML profile (transformer/anomaly/YOLO/SLM training):
+#     pip install -r requirements.txt -r requirements-ml.txt
+# After a verified install, pin your own lock:
+#     pip freeze > requirements.lock
+# ============================================================
+
+# --- Core API + agent runtime ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+websockets>=13.0
+python-dotenv>=1.0.1
+httpx>=0.27.0
+pydantic>=2.9.0
+
+# --- LLM providers ---
+openai>=1.50.0
+google-genai>=1.0.0
+
+# --- Persistence (optional cloud mirror; SQLite is built-in) ---
+supabase>=2.6.0
+
+# --- Dev / tests ---
+pytest>=8.0.0
+pytest-asyncio>=0.24.0   # tests/test_security.py uses async tests (pytest.ini: asyncio_mode=auto)

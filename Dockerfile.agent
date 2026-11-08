@@ -1,0 +1,69 @@
+# =============================================================================
+# SENTRIX Agent — multi-stage, non-root, builds on a fresh clone
+# =============================================================================
+# Same audit fixes as Dockerfile.api: loghub fetched at build time instead of
+# COPYing a gitignored dir, tests/ removed from the image, non-root user,
+# multi-stage build. .env is provided at runtime via env_file / -e, never baked
+# into the image.
+# =============================================================================
+
+# ---- builder ----------------------------------------------------------------
+<<<<<<< HEAD
+FROM python:3.12-slim AS builder
+=======
+FROM python:3.11-slim AS builder
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+COPY scripts/fetch_loghub.py ./scripts/fetch_loghub.py
+# `|| true`: SENTRIX degrades gracefully to synthetic calibration without the
+# samples, so an offline build must not fail. `mkdir -p` guarantees the dir
+# exists either way — otherwise the COPY below hard-fails on an offline build,
+# which is exactly the failure mode this stage exists to avoid.
+RUN python scripts/fetch_loghub.py || true; mkdir -p /app/loghub
+
+# ---- runtime ----------------------------------------------------------------
+<<<<<<< HEAD
+FROM python:3.12-slim
+=======
+FROM python:3.11-slim
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+<<<<<<< HEAD
+# Pull Debian security updates the published base tag hasn't picked up yet.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --create-home --uid 10001 sentrix
+
+COPY --from=builder /install /usr/local
+
+# The slim base ships setuptools 65.x — CVE-2024-6345 + CVE-2025-47273, both
+# HIGH and both FIXED upstream, so `ignore-unfixed: true` does not filter them.
+# This is what turned the image scan red. Run AFTER the COPY above so nothing
+# overwrites the upgraded versions.
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+=======
+RUN useradd --create-home --uid 10001 sentrix
+
+COPY --from=builder /install /usr/local
+>>>>>>> 97fc74eeed963a89e807b48050f54df99fec0d32
+COPY --from=builder /app/loghub/ ./loghub/
+COPY agent/ ./agent/
+COPY scripts/ ./scripts/
+
+RUN mkdir -p /app/data && chown -R sentrix:sentrix /app
+
+USER sentrix
+
+HEALTHCHECK --interval=60s --timeout=5s --start-period=30s --retries=3 \
+  CMD python -c "import pathlib,sys,time; p=pathlib.Path('/app/data/agent.heartbeat'); sys.exit(0 if p.exists() and time.time()-p.stat().st_mtime < 300 else 1)" || exit 1
+
+CMD ["python", "-m", "agent.main"]

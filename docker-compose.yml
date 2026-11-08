@@ -1,0 +1,66 @@
+# =============================================================================
+# SENTRIX — docker-compose (hardened)
+# =============================================================================
+# Defense-in-depth on top of the Dockerfiles' non-root users + HEALTHCHECKs:
+#   • cap_drop: ALL            — containers keep zero Linux capabilities
+#   • no-new-privileges        — blocks setuid/setgid privilege escalation
+#   • depends_on: service_healthy — the agent/dashboard wait for a *healthy*
+#     API (HEALTHCHECK green), not merely a started container
+#   • named volume for /app/data — SQLite persistence + audit trail survive
+#     container recreation
+# =============================================================================
+services:
+  sentrix-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - sentrix-data:/app/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  sentrix-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    env_file: .env
+    environment:
+      # Point the agent at the API service inside the compose network
+      - SENTRIX_API_WS=ws://sentrix-api:8000/ws
+    volumes:
+      - sentrix-agent-data:/app/data
+    depends_on:
+      sentrix-api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  # Optional dashboard (production static build served by unprivileged nginx).
+  # Runs as uid 101 on :8080 — no capabilities needed at all.
+  sentrix-dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "3000:8080"
+    depends_on:
+      sentrix-api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  sentrix-data:
+  sentrix-agent-data:

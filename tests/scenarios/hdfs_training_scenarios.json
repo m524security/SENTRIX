@@ -1,0 +1,452 @@
+[
+  {
+    "scenario_id": "TRAIN-001",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.DataNode$DataXceiver: blk_ID Exception in receiveBlock — disk write failure",
+    "frequency_in_dataset": 4821,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-01",
+      "asset_name": "Hadoop Node 1",
+      "tier": 1,
+      "criticality_score": 95,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 22,
+      "consecutive_failures": 3,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P1"
+  },
+  {
+    "scenario_id": "TRAIN-002",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.FSNamesystem: BLOCK blk_ID NameNode.delete() failed — replication under-replicated",
+    "frequency_in_dataset": 3904,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-02",
+      "asset_name": "Hadoop Node 2",
+      "tier": 1,
+      "criticality_score": 90,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 18,
+      "consecutive_failures": 4,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P1"
+  },
+  {
+    "scenario_id": "TRAIN-003",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.DataNode$PacketResponder: Interrupted waiting for responses from IP — node unreachable",
+    "frequency_in_dataset": 3211,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-03",
+      "asset_name": "Hadoop Node 3",
+      "tier": 1,
+      "criticality_score": 88,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 14,
+      "consecutive_failures": 3,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P1"
+  },
+  {
+    "scenario_id": "TRAIN-004",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.DataNode$DataXceiver: blk_ID Exception in receiveBlock — connection timeout",
+    "frequency_in_dataset": 2876,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-04",
+      "asset_name": "Hadoop Node 4",
+      "tier": 2,
+      "criticality_score": 75,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 28,
+      "consecutive_failures": 2,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P2"
+  },
+  {
+    "scenario_id": "TRAIN-005",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN hdfs.DFSClient: DataStreamer Exception blk_ID — checksum verification failed",
+    "frequency_in_dataset": 2544,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-05",
+      "asset_name": "Hadoop Node 5",
+      "tier": 2,
+      "criticality_score": 70,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 22,
+      "consecutive_failures": 1,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P2"
+  },
+  {
+    "scenario_id": "TRAIN-006",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.FSNamesystem: blk_ID has no valid replica — all datanodes reported failure",
+    "frequency_in_dataset": 2201,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-06",
+      "asset_name": "Hadoop Node 6",
+      "tier": 2,
+      "criticality_score": 72,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 20,
+      "consecutive_failures": 2,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 5
+    },
+    "expected_action": "ESCALATE_P2"
+  },
+  {
+    "scenario_id": "TRAIN-007",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.DataNode: IOException in BlockSender blk_ID — corrupted block detected",
+    "frequency_in_dataset": 1987,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-07",
+      "asset_name": "Hadoop Node 7",
+      "tier": 2,
+      "criticality_score": 68,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 18,
+      "consecutive_failures": 1,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P2"
+  },
+  {
+    "scenario_id": "TRAIN-008",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.DataNode$DataXceiver: blk_ID send block failed — broken pipe",
+    "frequency_in_dataset": 1743,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-08",
+      "asset_name": "Hadoop Node 8",
+      "tier": 2,
+      "criticality_score": 65,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 14,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "WARN"
+  },
+  {
+    "scenario_id": "TRAIN-009",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.DataNode$PacketResponder: blk_ID Terminating due to bad connection to client IP",
+    "frequency_in_dataset": 1521,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-09",
+      "asset_name": "Hadoop Node 9",
+      "tier": 3,
+      "criticality_score": 45,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 30,
+      "consecutive_failures": 1,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "WARN"
+  },
+  {
+    "scenario_id": "TRAIN-010",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN hdfs.BlockReaderLocal: Short circuit local reads failed — fallback to network",
+    "frequency_in_dataset": 1388,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-10",
+      "asset_name": "Hadoop Node 10",
+      "tier": 3,
+      "criticality_score": 40,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 28,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "WARN"
+  },
+  {
+    "scenario_id": "TRAIN-011",
+    "source": "LogHub HDFS",
+    "failure_pattern": "ERROR dfs.DataNode: IOException for client IP: blk_ID read failed unexpectedly",
+    "frequency_in_dataset": 1244,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-11",
+      "asset_name": "Hadoop Node 11",
+      "tier": 3,
+      "criticality_score": 42,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 32,
+      "consecutive_failures": 1,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 3
+    },
+    "expected_action": "SCHEDULE_RESTORE_TEST"
+  },
+  {
+    "scenario_id": "TRAIN-012",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.DataBlockScanner: Verification failed for blk_ID — block queued for re-scan",
+    "frequency_in_dataset": 1102,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-12",
+      "asset_name": "Hadoop Node 12",
+      "tier": 3,
+      "criticality_score": 38,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 26,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "WARN"
+  },
+  {
+    "scenario_id": "TRAIN-013",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.DataNode$DataXceiver: Receiving block blk_ID — src IP dest IP",
+    "frequency_in_dataset": 980,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-13",
+      "asset_name": "Hadoop Node 13",
+      "tier": 3,
+      "criticality_score": 35,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 10,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-014",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.FSNamesystem: blk_ID is not valid — returning null",
+    "frequency_in_dataset": 867,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-14",
+      "asset_name": "Hadoop Node 14",
+      "tier": 3,
+      "criticality_score": 36,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 22,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-015",
+    "source": "LogHub HDFS",
+    "failure_pattern": "WARN dfs.DataNode: Slow BlockReceiver write data to disk cost IP blk_ID",
+    "frequency_in_dataset": 754,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-15",
+      "asset_name": "Hadoop Node 15",
+      "tier": 3,
+      "criticality_score": 33,
+      "rpo_target_hours": 24,
+      "hours_since_last_backup": 18,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-016",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.FSNamesystem: BLOCK blk_ID NameSystem.addStoredBlock: blkMap updated",
+    "frequency_in_dataset": 642,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-16",
+      "asset_name": "Hadoop Node 16",
+      "tier": 4,
+      "criticality_score": 20,
+      "rpo_target_hours": 72,
+      "hours_since_last_backup": 48,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-017",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.DataNode$DataXceiver: Served block blk_ID to IP",
+    "frequency_in_dataset": 531,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-17",
+      "asset_name": "Hadoop Node 17",
+      "tier": 4,
+      "criticality_score": 15,
+      "rpo_target_hours": 72,
+      "hours_since_last_backup": 36,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-018",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.FSNamesystem: BLOCK blk_ID NameSystem.allocateBlock — new block allocated",
+    "frequency_in_dataset": 489,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-18",
+      "asset_name": "Hadoop Node 18",
+      "tier": 4,
+      "criticality_score": 18,
+      "rpo_target_hours": 72,
+      "hours_since_last_backup": 24,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-019",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.DataNode: PacketResponder blk_ID for client IP terminated — transfer complete",
+    "frequency_in_dataset": 412,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-19",
+      "asset_name": "Hadoop Node 19",
+      "tier": 4,
+      "criticality_score": 12,
+      "rpo_target_hours": 72,
+      "hours_since_last_backup": 20,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-020",
+    "source": "LogHub HDFS",
+    "failure_pattern": "INFO dfs.DataNode: Deleting block blk_ID file — GC cleanup complete",
+    "frequency_in_dataset": 387,
+    "asset_state": {
+      "asset_id": "HDFS-NODE-20",
+      "asset_name": "Hadoop Node 20",
+      "tier": 4,
+      "criticality_score": 10,
+      "rpo_target_hours": 72,
+      "hours_since_last_backup": 12,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-021",
+    "source": "Synthetic — Restore test overdue Tier 1 healthy RPO",
+    "failure_pattern": "Restore test not executed within required window",
+    "frequency_in_dataset": 0,
+    "asset_state": {
+      "asset_id": "ASSET-RESTORE-01",
+      "asset_name": "CRM Database Primary",
+      "tier": 1,
+      "criticality_score": 90,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 2,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 12
+    },
+    "expected_action": "SCHEDULE_RESTORE_TEST"
+  },
+  {
+    "scenario_id": "TRAIN-022",
+    "source": "Synthetic — Restore test overdue Tier 2 healthy RPO",
+    "failure_pattern": "Restore test not executed within required window",
+    "frequency_in_dataset": 0,
+    "asset_state": {
+      "asset_id": "ASSET-RESTORE-02",
+      "asset_name": "HR SQL Server",
+      "tier": 2,
+      "criticality_score": 65,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 4,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 8
+    },
+    "expected_action": "SCHEDULE_RESTORE_TEST"
+  },
+  {
+    "scenario_id": "TRAIN-023",
+    "source": "Synthetic — Tier 1 fully healthy",
+    "failure_pattern": "All backups completing successfully within RPO window",
+    "frequency_in_dataset": 0,
+    "asset_state": {
+      "asset_id": "ASSET-HEALTHY-01",
+      "asset_name": "SAP ERP Production",
+      "tier": 1,
+      "criticality_score": 95,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 1,
+      "consecutive_failures": 0,
+      "last_backup_status": "success",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "NONE"
+  },
+  {
+    "scenario_id": "TRAIN-024",
+    "source": "Synthetic — Tier 2 moderate RPO breach",
+    "failure_pattern": "RPO consumption at 125% — approaching threshold",
+    "frequency_in_dataset": 0,
+    "asset_state": {
+      "asset_id": "ASSET-WARN-01",
+      "asset_name": "Exchange Mail Server",
+      "tier": 2,
+      "criticality_score": 70,
+      "rpo_target_hours": 8,
+      "hours_since_last_backup": 12,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "WARN"
+  },
+  {
+    "scenario_id": "TRAIN-025",
+    "source": "Synthetic — Tier 1 critical RPO breach",
+    "failure_pattern": "RPO consumption at 475% — critical breach",
+    "frequency_in_dataset": 0,
+    "asset_state": {
+      "asset_id": "ASSET-P1-01",
+      "asset_name": "Payroll Database",
+      "tier": 1,
+      "criticality_score": 92,
+      "rpo_target_hours": 4,
+      "hours_since_last_backup": 19,
+      "consecutive_failures": 0,
+      "last_backup_status": "failed",
+      "restore_test_days_overdue": 0
+    },
+    "expected_action": "ESCALATE_P1"
+  }
+]

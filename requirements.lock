@@ -1,0 +1,65 @@
+# ============================================================
+# SENTRIX — Pinned lock file (generated with: pip freeze)
+# Use in CI/production builds for reproducible, supply-chain-safe
+# installs:   pip install -r requirements.lock
+# Regenerate after dependency updates from a clean venv.
+# ============================================================
+annotated-doc==0.0.4
+annotated-types==0.7.0
+anyio==4.14.1
+certifi==2026.6.17
+cffi==2.1.0
+charset-normalizer==3.4.9
+click==8.4.2
+cryptography==49.0.0
+deprecation==2.1.0
+distro==1.9.0
+fastapi==0.139.0
+google-auth==2.55.2
+google-genai==2.11.0
+h11==0.16.0
+h2==4.3.0
+hpack==4.2.0
+httpcore==1.0.9
+httptools==0.8.0
+httpx==0.28.1
+hyperframe==6.1.0
+idna==3.18
+iniconfig==2.3.0
+jiter==0.16.0
+multidict==6.7.1
+openai==2.45.0
+packaging==26.2
+pluggy==1.6.0
+postgrest==2.31.0
+propcache==0.5.2
+pyasn1==0.6.4
+pyasn1_modules==0.4.2
+pycparser==3.0
+pydantic==2.13.4
+pydantic_core==2.46.4
+Pygments==2.20.0
+PyJWT==2.13.0
+pytest==9.1.1
+pytest-asyncio==1.4.0
+python-dotenv==1.2.2
+PyYAML==6.0.3
+realtime==2.31.0
+requests==2.34.2
+sniffio==1.3.1
+starlette==1.3.1
+storage3==2.31.0
+StrEnum==0.4.15
+supabase==2.31.0
+supabase-auth==2.31.0
+supabase-functions==2.31.0
+tenacity==9.1.4
+tqdm==4.68.4
+typing-inspection==0.4.2
+typing_extensions==4.16.0
+urllib3==2.7.0
+uvicorn==0.51.0
+uvloop==0.22.1
+watchfiles==1.2.0
+websockets==15.0.1
+yarl==1.24.2

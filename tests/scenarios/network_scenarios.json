@@ -1,0 +1,82 @@
+[
+  {
+    "id": "NET-001",
+    "name": "Core firewall interface down",
+    "category": "network",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "FW-CORE-01": {"hours_since_last_backup": 8, "consecutive_failures": 5, "last_backup_status": "failed", "alarm_id": "IF-DOWN", "alarm_message": "Interface Gig0/1 is down — link loss detected"}
+    }
+  },
+  {
+    "id": "NET-002",
+    "name": "BGP route flapping",
+    "category": "network",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "ROUTER-MPLS-01": {"hours_since_last_backup": 6, "consecutive_failures": 4, "last_backup_status": "failed", "alarm_id": "BGP-FLAP", "alarm_message": "BGP neighbor 10.0.1.1 flapping — route instability"}
+    }
+  },
+  {
+    "id": "NET-003",
+    "name": "Load balancer CPU overload",
+    "category": "network",
+    "severity": "high",
+    "duration_hours": 4,
+    "assets": {
+      "LB-01": {"hours_since_last_backup": 10, "consecutive_failures": 2, "last_backup_status": "failed", "alarm_id": "HIGH-CPU", "alarm_message": "CPU utilization at 94% — control plane overload"}
+    }
+  },
+  {
+    "id": "NET-004",
+    "name": "VPN gateway memory leak",
+    "category": "network",
+    "severity": "medium",
+    "duration_hours": 8,
+    "assets": {
+      "VPN-GW-01": {"hours_since_last_backup": 14, "consecutive_failures": 1, "last_backup_status": "failed", "alarm_id": "MEM-HIGH", "alarm_message": "Memory utilization at 88% — possible leak"}
+    }
+  },
+  {
+    "id": "NET-005",
+    "name": "Switch CRC error burst",
+    "category": "network",
+    "severity": "medium",
+    "duration_hours": 2,
+    "assets": {
+      "SW-CORE-01": {"hours_since_last_backup": 16, "consecutive_failures": 1, "last_backup_status": "failed", "alarm_id": "PORT-ERR", "alarm_message": "CRC errors increasing on interface Gi0/2"}
+    }
+  },
+  {
+    "id": "NET-006",
+    "name": "Broadcast storm VLAN",
+    "category": "network",
+    "severity": "high",
+    "duration_hours": 1,
+    "assets": {
+      "SW-CORE-01": {"hours_since_last_backup": 6, "consecutive_failures": 2, "last_backup_status": "failed", "alarm_id": "STORM-ALM", "alarm_message": "Broadcast storm detected on VLAN 100"}
+    }
+  },
+  {
+    "id": "NET-007",
+    "name": "DNS server healthy",
+    "category": "network",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "DNS-01": {"hours_since_last_backup": 0.5, "consecutive_failures": 0, "last_backup_status": "success", "alarm_id": "UPDATE-OK", "alarm_message": "Firmware update staged for next maintenance window"}
+    }
+  },
+  {
+    "id": "NET-008",
+    "name": "NTP sync drift",
+    "category": "network",
+    "severity": "low",
+    "duration_hours": 1,
+    "assets": {
+      "NMS-01": {"hours_since_last_backup": 12, "consecutive_failures": 0, "last_backup_status": "success", "alarm_id": "NTP-OFF", "alarm_message": "NTP synchronization offset exceeds 100ms"}
+    }
+  }
+]

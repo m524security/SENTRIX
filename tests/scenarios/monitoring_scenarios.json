@@ -1,0 +1,82 @@
+[
+  {
+    "id": "MON-001",
+    "name": "Prometheus TSDB corruption",
+    "category": "monitoring",
+    "severity": "critical",
+    "duration_hours": 2,
+    "assets": {
+      "PROM-CORE-01": {"hours_since_last_backup": 10, "consecutive_failures": 4, "last_backup_status": "failed", "event_message": "Prometheus TSDB WAL corruption — data loss risk for last 6 hours"}
+    }
+  },
+  {
+    "id": "MON-002",
+    "name": "Grafana dashboard backup broken",
+    "category": "monitoring",
+    "severity": "critical",
+    "duration_hours": 3,
+    "assets": {
+      "GRAFANA-01": {"hours_since_last_backup": 14, "consecutive_failures": 3, "last_backup_status": "failed", "event_message": "Grafana dashboard provisioning backup failed — PostgreSQL connection pool exhausted"}
+    }
+  },
+  {
+    "id": "MON-003",
+    "name": "Datadog API quota exceeded",
+    "category": "monitoring",
+    "severity": "high",
+    "duration_hours": 4,
+    "assets": {
+      "DDOG-API-01": {"hours_since_last_backup": 8, "consecutive_failures": 2, "last_backup_status": "failed", "event_message": "Datadog metrics backup API rate limited — quota exhausted for concurrent export"}
+    }
+  },
+  {
+    "id": "MON-004",
+    "name": "ELK cluster shard allocation",
+    "category": "monitoring",
+    "severity": "high",
+    "duration_hours": 5,
+    "assets": {
+      "ELK-LOGS-01": {"hours_since_last_backup": 12, "consecutive_failures": 2, "last_backup_status": "failed", "event_message": "ELK cluster shard allocation stuck — snapshot repository unavailable"}
+    }
+  },
+  {
+    "id": "MON-005",
+    "name": "Jaeger trace export stalled",
+    "category": "monitoring",
+    "severity": "medium",
+    "duration_hours": 3,
+    "assets": {
+      "JAEGER-TRACE-01": {"hours_since_last_backup": 18, "consecutive_failures": 1, "last_backup_status": "failed", "event_message": "Jaeger trace export to object store stalled — backpressure on collector"}
+    }
+  },
+  {
+    "id": "MON-006",
+    "name": "Alertmanager silences lost",
+    "category": "monitoring",
+    "severity": "medium",
+    "duration_hours": 2,
+    "assets": {
+      "ALERTMGR-01": {"hours_since_last_backup": 24, "consecutive_failures": 1, "last_backup_status": "failed", "event_message": "Alertmanager silences configuration lost — stateful backup incomplete"}
+    }
+  },
+  {
+    "id": "MON-007",
+    "name": "Loki log retention gap",
+    "category": "monitoring",
+    "severity": "high",
+    "duration_hours": 4,
+    "assets": {
+      "LOKI-01": {"hours_since_last_backup": 16, "consecutive_failures": 2, "last_backup_status": "failed", "event_message": "Loki index backup failed — retention enforcement created data gap"}
+    }
+  },
+  {
+    "id": "MON-008",
+    "name": "Healthy monitoring snapshot",
+    "category": "monitoring",
+    "severity": "info",
+    "duration_hours": 1,
+    "assets": {
+      "PROM-CORE-01": {"hours_since_last_backup": 0.8, "consecutive_failures": 0, "last_backup_status": "success", "event_message": "Prometheus snapshot completed — TSDB blocks compacted and backed up"}
+    }
+  }
+]
