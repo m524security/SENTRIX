@@ -9,7 +9,7 @@
 # ============================================================
 
 # --- Core API + agent runtime ---
-fastapi>=0.115.0
+fastapi>=0.162.2
 uvicorn[standard]>=0.32.0
 websockets>=13.0
 python-dotenv>=1.0.1
